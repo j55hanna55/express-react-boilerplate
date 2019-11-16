@@ -8,6 +8,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.get("/api/all", (req, res) => {
+  console.log(req.headers['user-agent'])
   res.json(data)
 })
 
