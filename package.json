@@ -9,17 +9,5 @@
     "start": "node server"
   },
   "dependencies": {
-    "express": "^4.17.1"
-  },
-  "description": "- [General Setup](#general-setup) - [Backend Setup](#backend-setup)   - [Create server and client folder](#create-server-and-client-folder)   - [Run npm init](#run-npm-init)   - [Edit package.json](#edit-package.json)   - [Create index.js inside the server folder](#create-index.js-inside-the-server-folder)   - [Create db folder inside server](#create-db-folder-inside-server)   - [Create dummy data inside the db folder](#create-dummy-data-inside-the-db-folder) - [Frontend Setup](#frontend-setup) ## General Setup #### The usual 1. Create repo in Github 2. Clone repo  3. CD to repo folder #### Create server and client folder ```sh mkdir server client ``` #### Run npm init ```sh npm init -y ``` #### Edit package.json ```json {   \"name\": \"react-ucbsf\",   \"version\": \"1.0.0\",   \"main\": \"index.js\",   \"license\": \"MIT\",   \"scripts\": {     \"install\": \"cd client && npm install\",     \"heroku-postbuild\": \"cd client && npm run build\",     \"start\": \"node server\"   },   \"dependencies\": {     \"express\": \"^4.17.1\"   } } ``` #### Create .gitignore file ``` # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/j55hanna55/express-react-boilerplate.git"
-  },
-  "keywords": [],
-  "author": "",
-  "bugs": {
-    "url": "https://github.com/j55hanna55/express-react-boilerplate/issues"
-  },
-  "homepage": "https://github.com/j55hanna55/express-react-boilerplate#readme"
+
 }
