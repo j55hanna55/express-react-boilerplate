@@ -4,13 +4,22 @@ import {
   Image,
   Platform,
   ScrollView,
-  StyleSheet,
-  Text,
   TouchableOpacity,
+  StyleSheet,
+  Button,
   View,
+  SafeAreaView,
+  Text,
+  Alert,
+  TextInput,
+
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
+
+function Separator() {
+  return <View style={styles.separator} />;
+}
 
 export default function HomeScreen() {
   return (
@@ -27,43 +36,48 @@ export default function HomeScreen() {
             }
             style={styles.welcomeImage}
           />
+        
+
+         <Text style={styles.title}>
+          SIGN IN SIGN IN SIGN IN SIGN IN SIGN IN SIGN IN SIGN IN SIGN IN SIGN IN SIGN IN SIGN IN SIGN IN SIGN IN
+        </Text>
+          
+        <View style={styles.inp}>
+        <TextInput style={styles.inputbox} 
+        placeholder="username" 
+        placeholderTextColor="#000"
+        />
         </View>
+        
+        <View style={styles.inp}>
+        <TextInput style={styles.inputbox} 
+        placeholder="password"
+        placeholderTextColor="#000"
+        />
+        </View>
+       
+     
+        <Button
+          title="Sign in"
+          onPress={() => Alert.alert('Lets Sign in But Not Now')}
+        />
 
-        <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
 
-          <Text style={styles.getStartedText}>Get started by opening</Text>
-
-          <View
-            style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-            <MonoText>screens/HomeScreen.js</MonoText>
-          </View>
-
-          <Text style={styles.getStartedText}>
-            Change this text and your app will automatically reload.
-          </Text>
         </View>
 
         <View style={styles.helpContainer}>
           <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
             <Text style={styles.helpLinkText}>
-              Help, it didn’t automatically reload!
+              Need Help, Forget password | username
             </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
 
       <View style={styles.tabBarInfoContainer}>
-        <Text style={styles.tabBarInfoText}>
-          This is a tab bar. You can edit it in:
-        </Text>
+        
 
-        <View
-          style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-          <MonoText style={styles.codeHighlightText}>
-            navigation/MainTabNavigator.js
-          </MonoText>
-        </View>
+        
       </View>
     </View>
   );
@@ -194,5 +208,28 @@ const styles = StyleSheet.create({
   helpLinkText: {
     fontSize: 14,
     color: '#2e78b7',
+  },
+   inputbox: {
+    width: 300,
+    backgroundColor: '#eceaea',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    marginTop: 10,
+   textAlign: 'center',
+   padding: 10,
+  },
+  inp: {
+justifyContent: 'center',
+  alignItems: 'center',
+  },
+  title: {
+    textAlign: 'center',
+    marginVertical: 30, 
+  },
+  separator: {
+    marginVertical: 8,
+    borderBottomColor: '#737373',
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
 });
