@@ -10,7 +10,7 @@ export default class MessengerScreen extends Component {
   render() {
     return (
       <WebView
-        source={{uri: 'https://www.linkedin.com/'}}
+        source={{uri: 'https://www.instagram.com'}}
         style={{marginTop: 20}}
       />
     );

@@ -1,21 +1,23 @@
-import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
-
-export default function FacebookScreen() {
-  return (
-    <ScrollView style={styles.container}>
-      {/**
-       * Go ahead and delete ExpoLinksView and replace it with your content;
-       * we just wanted to provide you with some helpful links.
-       */}
-      <ExpoLinksView />
-    </ScrollView>
-  );
+import React, { Component } from 'react';
+import { 
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import { WebView } from 'react-native-webview';
+export default class MessengerScreen extends Component {
+  render() {
+    return (
+      <WebView
+        source={{uri: 'https://www.facebook.com'}}
+        style={{marginTop: 20}}
+      />
+    );
+  }
 }
-
-FacebookScreen.navigationOptions = {
-  title: 'Facebook',
+  MessengerScreen.navigationOptions = {
+  title: 'LinkedIn',
 };
 
 const styles = StyleSheet.create({
