@@ -3,54 +3,56 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+
+import FacebookScreen from '../screens/FacebookScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import WhatsappScreen from '../screens/WhatsappScreen';
+import InstagramScreen from '../screens/InstagramScreen';
+import MessengerScreen from '../screens/MessengerScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
 });
 
-const HomeStack = createStackNavigator(
+
+// FacebookScreen
+const FacebookStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Links: FacebookScreen,
   },
   config
 );
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+FacebookStack.navigationOptions = {
+  tabBarLabel: 'Facebook',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'logo-facebook' : 'logo-facebook'} />
   ),
 };
 
-HomeStack.path = '';
+FacebookStack.path = '';
 
-const LinksStack = createStackNavigator(
+
+// WhatsappScreen
+const WhatsappStack = createStackNavigator(
   {
-    Links: LinksScreen,
+    Whatsapp: WhatsappScreen,
   },
   config
 );
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+WhatsappStack.navigationOptions = {
+  tabBarLabel: 'WhatsApp',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'logo-whatsapp' : 'logo-whatsapp'} />
   ),
 };
 
-LinksStack.path = '';
+WhatsappStack.path = '';
 
+
+// SettingsScreen
 const SettingsStack = createStackNavigator(
   {
     Settings: SettingsScreen,
@@ -67,10 +69,50 @@ SettingsStack.navigationOptions = {
 
 SettingsStack.path = '';
 
+
+// InstagramScreen
+const InstagramStack = createStackNavigator(
+  {
+    Instagram: InstagramScreen,
+  },
+  config
+);
+
+InstagramStack.navigationOptions = {
+  tabBarLabel: 'Instagram',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'logo-instagram' : 'logo-instagram'} />
+  ),
+};
+
+InstagramStack.path = '';
+
+
+MessengerScreen
+const MessengerStack = createStackNavigator(
+  {
+    Messenger: MessengerScreen,
+  },
+  config
+);
+
+MessengerStack.navigationOptions = {
+  tabBarLabel: 'Messenger',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'messenger' : 'logo-facebook-messenger'} />
+  ),
+};
+
+MessengerStack.path = '';
+
+
 const tabNavigator = createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
+  FacebookStack,
+  InstagramStack,
+  MessengerStack,
+  WhatsappStack,
   SettingsStack,
+  
 });
 
 tabNavigator.path = '';
