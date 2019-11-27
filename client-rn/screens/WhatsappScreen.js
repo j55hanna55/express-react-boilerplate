@@ -1,27 +1,21 @@
-import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
-
-export default function WhatsappScreen() {
-  return (
-    <ScrollView style={styles.container}>
-      {/**
-       * Go ahead and delete ExpoLinksView and replace it with your content;
-       * we just wanted to provide you with some helpful links.
-       */}
-      <ExpoLinksView />
-    </ScrollView>
-  );
+import React, { Component } from 'react';
+import { 
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import { WebView } from 'react-native-webview';
+export default class WhatsappScreen extends Component {
+  render() {
+    return (
+      <WebView
+        source={{uri: 'https://www.reddit.com/login/'}}
+        style={{marginTop: 20}}
+      />
+    );
+  }
 }
-
-WhatsappScreen.navigationOptions = {
-  title: 'WhatsApp',
+  WhatsappScreen.navigationOptions = {
+  title: 'Reddit',
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
-  },
-});
