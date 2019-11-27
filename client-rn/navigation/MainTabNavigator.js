@@ -43,9 +43,9 @@ const WhatsappStack = createStackNavigator(
 );
 
 WhatsappStack.navigationOptions = {
-  tabBarLabel: 'WhatsApp',
+  tabBarLabel: 'Reddit',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'logo-whatsapp' : 'logo-whatsapp'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'logo-reddit' : 'logo-reddit'} />
   ),
 };
 
@@ -87,9 +87,6 @@ InstagramStack.navigationOptions = {
 
 InstagramStack.path = '';
 
-
-
-
 const MessengerStack = createStackNavigator(
   {
     Links: MessengerScreen,
@@ -98,9 +95,9 @@ const MessengerStack = createStackNavigator(
 );
 
 MessengerStack.navigationOptions = {
-  tabBarLabel: 'Messenger',
+  tabBarLabel: 'LinkedIn',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'logo-facebook-messenger' : 'logo-facebook-messenger'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'logo-linkedin' : 'logo-linkedin'} />
   ),
 };
 
