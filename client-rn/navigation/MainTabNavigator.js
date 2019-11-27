@@ -88,10 +88,11 @@ InstagramStack.navigationOptions = {
 InstagramStack.path = '';
 
 
-MessengerScreen
+
+
 const MessengerStack = createStackNavigator(
   {
-    Messenger: MessengerScreen,
+    Links: MessengerScreen,
   },
   config
 );
@@ -99,11 +100,27 @@ const MessengerStack = createStackNavigator(
 MessengerStack.navigationOptions = {
   tabBarLabel: 'Messenger',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'messenger' : 'logo-facebook-messenger'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'logo-facebook-messenger' : 'logo-facebook-messenger'} />
   ),
 };
 
 MessengerStack.path = '';
+// MessengerScreen
+// const MessengerStack = createStackNavigator(
+//   {
+//     Messenger: MessengerScreen,
+//   },
+//   config
+// );
+
+// MessengerStack.navigationOptions = {
+//   tabBarLabel: 'Messenger',
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'logo-facebook ' : 'logo-facebook'} />
+//   ),
+// };
+
+// MessengerStack.path = '';
 
 
 const tabNavigator = createBottomTabNavigator({
