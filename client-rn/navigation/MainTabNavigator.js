@@ -15,7 +15,6 @@ const config = Platform.select({
   default: {},
 });
 
-
 // FacebookScreen
 const FacebookStack = createStackNavigator(
   {
@@ -32,7 +31,6 @@ FacebookStack.navigationOptions = {
 };
 
 FacebookStack.path = '';
-
 
 // WhatsappScreen
 const WhatsappStack = createStackNavigator(
@@ -119,14 +117,12 @@ MessengerStack.path = '';
 
 // MessengerStack.path = '';
 
-
 const tabNavigator = createBottomTabNavigator({
   FacebookStack,
   InstagramStack,
   MessengerStack,
   WhatsappStack,
   SettingsStack,
-  
 });
 
 tabNavigator.path = '';
