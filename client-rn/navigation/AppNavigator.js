@@ -32,7 +32,6 @@ class SignInScreen extends React.Component {
   _signUpAsync = async () => {
    this.props.navigation.navigate('SignUp')
   }
-
 }
 
 class HomeScreen extends React.Component {
