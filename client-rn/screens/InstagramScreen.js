@@ -17,5 +17,5 @@ export default class MessengerScreen extends Component {
   }
 }
   MessengerScreen.navigationOptions = {
-  title: 'LinkedIn',
+  title: 'Instagram',
 };

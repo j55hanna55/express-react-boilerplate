@@ -10,6 +10,7 @@ import {
 import { createStackNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
 import MainTabNavigator from './MainTabNavigator';
 import SignUp from './SignUp';
+import SignIn from './SignIn'
 
 
 class SignInScreen extends React.Component {
@@ -119,10 +120,10 @@ export default createAppContainer(createSwitchNavigator(
   {
     AuthLoading: AuthLoadingScreen,
     App: AppStack,
-    Auth: AuthStack,
+    Auth: SignIn,
     Main: MainTabNavigator,
     SignUp: SignUp,
-
+    // SignIn: SignIn,
   },
   {
     initialRouteName: 'AuthLoading',

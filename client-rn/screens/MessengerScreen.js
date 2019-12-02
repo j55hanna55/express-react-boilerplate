@@ -20,10 +20,10 @@ export default class MessengerScreen extends Component {
   title: 'LinkedIn',
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     paddingTop: 15,
+//     backgroundColor: '#fff',
+//   },
+// });
