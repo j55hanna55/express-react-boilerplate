@@ -1,121 +1,125 @@
-import React from 'react';
-import {
-  ActivityIndicator,
-  AsyncStorage,
-  Button,
-  StatusBar,
-  StyleSheet,
-  View,
-} from 'react-native';
-import { createStackNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
+//TODO: break HomeScreen class out of AppNavigator
+// Dead Class All should be REPLACED
 
-class SignInScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Please sign in',
-  };
+// import React from 'react';
+// import {
+//   ActivityIndicator,
+//   AsyncStorage,
+//   Button,
+//   StatusBar,
+//   StyleSheet,
+//   View,
+// } from 'react-native';
+// import { createStackNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Button title="Sign in!" onPress={this._signInAsync} />
-      </View>
-    );
-  }
+// class SignInScreen extends React.Component {
+//   static navigationOptions = {
+//     title: 'Please sign in',
+//   };
 
-  _signInAsync = async () => {
-    await AsyncStorage.setItem('userToken', 'abc');
-    this.props.navigation.navigate('App');
-  };
-}
+//   render() {
+//     return (
+//       <View style={styles.container}>
+//         <Button title="Sign in!" onPress={this._signInAsync} />
+//       </View>
+//     );
+//   }
 
-class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Welcome to the app!',
-  };
+//   _signInAsync = async () => {
+//     await AsyncStorage.setItem('userToken', 'abc');
+//     this.props.navigation.navigate('App');
+//   };
+// }
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Button title="Show me more of the app" onPress={this._showMoreApp} />
-        <Button title="Actually, sign me out :)" onPress={this._signOutAsync} />
-      </View>
-    );
-  }
+// class HomeScreen extends React.Component {
+//   static navigationOptions = {
+//     title: 'Welcome to the app!',
+//   };
 
-  _showMoreApp = () => {
-    this.props.navigation.navigate('Other');
-  };
+//   render() {
+//     return (
+//       <View style={styles.container}>
+//         <Button title="Show me more of the app" onPress={this._showMoreApp} />
+//         <Button title="Actually, sign me out :)" onPress={this._signOutAsync} />
+//       </View>
+//     );
+//   }
 
-  _signOutAsync = async () => {
-    await AsyncStorage.clear();
-    this.props.navigation.navigate('Auth');
-  };
-}
+//   _showMoreApp = () => {
+//     this.props.navigation.navigate('Other');
+//   };
 
-class OtherScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Lots of features here',
-  };
+//   _signOutAsync = async () => {
+//     await AsyncStorage.clear();
+//     this.props.navigation.navigate('Auth');
+//   };
+// }
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Button title="I'm done, sign me out" onPress={this._signOutAsync} />
-        <StatusBar barStyle="default" />
-      </View>
-    );
-  }
+// class OtherScreen extends React.Component {
+//   static navigationOptions = {
+//     title: 'Lots of features here',
+//   };
 
-  _signOutAsync = async () => {
-    await AsyncStorage.clear();
-    this.props.navigation.navigate('Auth');
-  };
-}
+//   render() {
+//     return (
+//       <View style={styles.container}>
+//         <Button title="I'm done, sign me out" onPress={this._signOutAsync} />
+//         <StatusBar barStyle="default" />
+//       </View>
+//     );
+//   }
 
-class AuthLoadingScreen extends React.Component {
-  constructor() {
-    super();
-    this._bootstrapAsync();
-  }
+//   _signOutAsync = async () => {
+//     await AsyncStorage.clear();
+//     this.props.navigation.navigate('Auth');
+//   };
+// }
 
-  // Fetch the token from storage then navigate to our appropriate place
-  _bootstrapAsync = async () => {
-    const userToken = await AsyncStorage.getItem('userToken');
+// class AuthLoadingScreen extends React.Component {
+//   constructor() {
+//     super();
+//     this._bootstrapAsync();
+//   }
 
-    // This will switch to the App screen or Auth screen and this loading
-    // screen will be unmounted and thrown away.
-    this.props.navigation.navigate(userToken ? 'App' : 'Auth');
-  };
+//   // Fetch the token from storage then navigate to our appropriate place
+//   _bootstrapAsync = async () => {
+//     const userToken = await AsyncStorage.getItem('userToken');
 
-  // Render any loading content that you like here
-  render() {
-    return (
-      <View style={styles.container}>
-        <ActivityIndicator />
-        <StatusBar barStyle="default" />
-      </View>
-    );
-  }
-}
+//     // This will switch to the App screen or Auth screen and this loading
+//     // screen will be unmounted and thrown away.
+//     this.props.navigation.navigate(userToken ? 'App' : 'Auth');
+//   };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+//   // Render any loading content that you like here
+//   render() {
+//     return (
+//       <View style={styles.container}>
+//         <ActivityIndicator />
+//         <StatusBar barStyle="default" />
+//       </View>
+//     );
+//   }
+// }
 
-const AppStack = createStackNavigator({ Home: HomeScreen, Other: OtherScreen });
-const AuthStack = createStackNavigator({ SignIn: SignInScreen });
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// });
 
-export default createAppContainer(createSwitchNavigator(
-  {
-    AuthLoading: AuthLoadingScreen,
-    App: AppStack,
-    Auth: AuthStack,
-  },
-  {
-    initialRouteName: 'AuthLoading',
-  }
-));
+// const AppStack = createStackNavigator({ Home: HomeScreen, Other: OtherScreen });
+// const AuthStack = createStackNavigator({ SignIn: SignInScreen });
+
+// export default createAppContainer(createSwitchNavigator(
+//   {
+//     AuthLoading: AuthLoadingScreen,
+//     App: AppStack,
+//     Auth: AuthStack,
+//     HomeScreen: HomeScreen,
+//   },
+//   {
+//     initialRouteName: 'AuthLoading',
+//   }
+// ));
