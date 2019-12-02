@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { createStackNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
 import MainTabNavigator from './MainTabNavigator';
+import SignUp from './SignUp';
 
 
 class SignInScreen extends React.Component {
@@ -20,14 +21,18 @@ class SignInScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Button title="Sign in!" onPress={this._signInAsync} />
+        <Button title="Sign up!" onPress={this._signUpAsync} />
       </View>
     );
   }
-
   _signInAsync = async () => {
     await AsyncStorage.setItem('userToken', 'abc');
     this.props.navigation.navigate('App');
-  };
+  } 
+  _signUpAsync = async () => {
+   this.props.navigation.navigate('SignUp')
+  }
+
 }
 
 class HomeScreen extends React.Component {
@@ -117,6 +122,7 @@ export default createAppContainer(createSwitchNavigator(
     App: AppStack,
     Auth: AuthStack,
     Main: MainTabNavigator,
+    SignUp: SignUp,
 
   },
   {
