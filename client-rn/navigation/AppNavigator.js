@@ -34,7 +34,7 @@ class SignInScreen extends React.Component {
    this.props.navigation.navigate('SignUp')
   }
 }
-
+//TODO We might not need class-HomeScreen anymore.
 class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Welcome to Jakoo!!',
@@ -58,7 +58,7 @@ class HomeScreen extends React.Component {
     this.props.navigation.navigate('Main');
   };
 }
-
+//TODO We might not need class-OtherScreen anymore.
 class OtherScreen extends React.Component {
   static navigationOptions = {
     title: 'Lots of features here',

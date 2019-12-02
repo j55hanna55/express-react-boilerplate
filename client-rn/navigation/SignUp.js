@@ -42,7 +42,10 @@ export default class SignUp extends React.Component {
   handleSubmit = () => {
     const value = this._form.getValue(); // use that ref to get the form value
     console.log('value: ', value);
-    this.props.navigation.navigate('Main');
+    // ; 
+    if (value) {
+      this.props.navigation.navigate('Main')
+    }
   }
   render() {
     return (
