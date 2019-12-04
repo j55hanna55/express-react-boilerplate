@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import { createStackNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
 import MainTabNavigator from './MainTabNavigator';
+import SignUp from './SignUp';
+import SignIn from './SignIn'
 
 
 class SignInScreen extends React.Component {
@@ -20,16 +22,19 @@ class SignInScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Button title="Sign in!" onPress={this._signInAsync} />
+        <Button title="Sign up!" onPress={this._signUpAsync} />
       </View>
     );
   }
-
   _signInAsync = async () => {
     await AsyncStorage.setItem('userToken', 'abc');
     this.props.navigation.navigate('App');
-  };
+  } 
+  _signUpAsync = async () => {
+   this.props.navigation.navigate('SignUp')
+  }
 }
-
+//TODO We might not need class-HomeScreen anymore.
 class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Welcome to Jakoo!!',
@@ -53,7 +58,7 @@ class HomeScreen extends React.Component {
     this.props.navigation.navigate('Main');
   };
 }
-
+//TODO We might not need class-OtherScreen anymore.
 class OtherScreen extends React.Component {
   static navigationOptions = {
     title: 'Lots of features here',
@@ -115,9 +120,10 @@ export default createAppContainer(createSwitchNavigator(
   {
     AuthLoading: AuthLoadingScreen,
     App: AppStack,
-    Auth: AuthStack,
+    Auth: SignIn,
     Main: MainTabNavigator,
-
+    SignUp: SignUp,
+    // SignIn: SignIn,
   },
   {
     initialRouteName: 'AuthLoading',

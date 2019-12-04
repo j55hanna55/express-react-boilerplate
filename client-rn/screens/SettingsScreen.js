@@ -21,7 +21,7 @@ export default class SettingScreen extends React.Component {
 
   _signOutAsync = async () => {
     await AsyncStorage.removeItem('userToken');
-    this.props.navigation.navigate('SignIn');
+    this.props.navigation.navigate('Auth');
   };
 }
 

@@ -17,13 +17,13 @@ export default class MessengerScreen extends Component {
   }
 }
   MessengerScreen.navigationOptions = {
-  title: 'LinkedIn',
+  title: 'Facebook',
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     paddingTop: 15,
+//     backgroundColor: '#fff',
+//   },
+// });
