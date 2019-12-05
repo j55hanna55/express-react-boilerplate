@@ -2,11 +2,14 @@ const path = require('path')
 const express = require('express')
 const data = require('./db/fakedata.json')
 const app = express()
-var mongojs = require("mongojs");
+const mongojs = require("mongojs");
+const jwtGen = require("./jwt");
+const bcrypt = require("bcryptjs")
 
 var PORT = process.env.PORT || 3001;
 
 app.use(express.urlencoded())
+app.use(express.json())
 
 app.get("/api/all", (req, res) => {
   console.log(req.headers['user-agent'])
@@ -19,7 +22,7 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-var databaseUrl = process.env.MONGODB_URI || "boilerplate";
+var databaseUrl = process.env.MONGODB_URI || 'mongodb://localhost:27017/userInfo_db';
 var collections = ["userInfo"];
 
 var db = mongojs(databaseUrl, collections);
@@ -29,9 +32,58 @@ db.on("error", function (error) {
   console.log("Database Error:", error);
 });
 
+app.post('/signIn', function (req, res) {
+  console.log(req.body)
+  db.userInfo.findOne({
+    userEmail: req.body.userEmail,
+    userPassword: req.body.userPassword
+  }, function (error, result) {
+    res.json(result)
+  })
+})
 
-app.get("/userInfo", function(req,res){
-  db.userInfo.find({}, function(error, result){
+app.post('/signUp', async (req, res) => {
+  console.log(req.body)
+  db.userInfo.findOne({
+    userEmail: req.body.userEmail
+  }, async function (error, result) {
+    if (error) {
+      console.log(error)
+      res.status(500).send()
+    }
+    if (result) {
+      res.status(400).send({error: 'User Email Already Exists'})
+    } else if (!result) {
+      var hashPassword = await bcrypt.hash(req.body.userPassword, 8)
+      db.userInfo.insert({
+        userFullName: req.body.userFullName,
+        userPassword: hashPassword,
+        userEmail: req.body.userEmail
+      }, function (error, savedUserInfo) {
+        // Log any errors
+        if (error) {
+          console.log(error);
+          res.status(500).send()
+        } else {
+          const token = jwtGen(savedUserInfo._id);
+          console.log(token);
+          db.userInfo.update(
+            {_id: savedUserInfo._id},
+            {$set: { "token": token}});
+            savedUserInfo['token'] = token
+          res.status(201).json(savedUserInfo);
+        }
+      });
+    }
+  })
+ 
+// }
+// res.send()
+})
+
+
+app.get("/userInfo", function (req, res) {
+  db.userInfo.find({}, function (error, result) {
     res.json(result);
   })
 })
@@ -39,12 +91,11 @@ app.get("/userInfo", function(req,res){
 app.post("/userInfo", function (req, res) {
   console.log(req.body)
 
-  db.userInfo.insert({ 
-    userFirstName: req.body.userFirstName, 
-    userLastName: req.body.userLastName, 
-    userName: req.body.userName, 
-    userPassword: req.body.userPassword, 
-    userEmail: req.body.userEmail 
+  db.userInfo.insert({
+    userFirstName: req.body.userFirstName,
+    userLastName: req.body.userLastName,
+    userPassword: req.body.userPassword,
+    userEmail: req.body.userEmail
   }, function (error, savedUserInfo) {
     // Log any errors
     if (error) {
