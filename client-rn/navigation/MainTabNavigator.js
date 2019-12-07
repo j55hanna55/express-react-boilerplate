@@ -41,9 +41,9 @@ const WhatsappStack = createStackNavigator(
 );
 
 WhatsappStack.navigationOptions = {
-  tabBarLabel: 'Reddit',
+  tabBarLabel: 'Twitter',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'logo-reddit' : 'logo-reddit'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'logo-twitter' : 'logo-twitter'} />
   ),
 };
 

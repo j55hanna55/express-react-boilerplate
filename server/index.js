@@ -82,30 +82,30 @@ app.post('/signUp', async (req, res) => {
 })
 
 
-app.get("/userInfo", function (req, res) {
-  db.userInfo.find({}, function (error, result) {
-    res.json(result);
-  })
-})
+// app.get("/userInfo", function (req, res) {
+//   db.userInfo.find({}, function (error, result) {
+//     res.json(result);
+//   })
+// })
 
-app.post("/userInfo", function (req, res) {
-  console.log(req.body)
+// app.post("/userInfo", function (req, res) {
+//   console.log(req.body)
 
-  db.userInfo.insert({
-    userFirstName: req.body.userFirstName,
-    userLastName: req.body.userLastName,
-    userPassword: req.body.userPassword,
-    userEmail: req.body.userEmail
-  }, function (error, savedUserInfo) {
-    // Log any errors
-    if (error) {
-      console.log(error);
-    } else {
-      //the reason why we are sending the savedSong back is because we now have an _id to give to the client
-      res.json(savedUserInfo);
-    }
-  });
-});
+//   db.userInfo.insert({
+//     userFirstName: req.body.userFirstName,
+//     userLastName: req.body.userLastName,
+//     userPassword: req.body.userPassword,
+//     userEmail: req.body.userEmail
+//   }, function (error, savedUserInfo) {
+//     // Log any errors
+//     if (error) {
+//       console.log(error);
+//     } else {
+//       //the reason why we are sending the savedSong back is because we now have an _id to give to the client
+//       res.json(savedUserInfo);
+//     }
+//   });
+// });
 
 
 

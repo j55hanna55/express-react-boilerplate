@@ -8,7 +8,7 @@ import {
 
 export default class SettingScreen extends React.Component {
   static navigationOptions = {
-    title: 'SettingsTitle',
+    title: 'Settings',
   };
 
   render() {

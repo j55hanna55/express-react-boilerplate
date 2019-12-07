@@ -10,12 +10,12 @@ export default class WhatsappScreen extends Component {
   render() {
     return (
       <WebView
-        source={{uri: 'https://www.reddit.com/login/'}}
+        source={{uri: 'https://twitter.com/'}}
         style={{marginTop: 20}}
       />
     );
   }
 }
   WhatsappScreen.navigationOptions = {
-  title: 'Reddit',
+  title: 'Twitter',
 };
