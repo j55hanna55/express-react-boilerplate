@@ -37,7 +37,6 @@ app.post('/signIn', async (req, res) => {
   db.userInfo.findOne({
     userEmail: req.body.userEmail
   },async (error, result) => {
-    console.log(result)
     if (await bcrypt.compare(req.body.userPassword, result.userPassword)) {
       // password match then generate a token for user login
       const token = jwtGen(result._id);
