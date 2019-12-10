@@ -7,15 +7,15 @@ import t from 'tcomb-form-native'; // 0.6.9
 const Form = t.form.Form;
 
 const User = t.struct({
-  username: t.String,
+  email: t.String,
   password: t.String,
 });
 
 //TODO first make sure everything you can validate it. Is it an email...name...
 const options = {
   fields: {
-    username: {
-        error: 'Enter a username'
+    email: {
+        error: 'Enter an email'
       },
     password: {
       error: 'Enter a password'
@@ -26,11 +26,32 @@ const options = {
 //TODO Generate the JWT for signup. 
 //TODO Generate Error if the user did not input the needed information
 export default class SignIn extends React.Component {
+  state = {signinerror: ''}
   handleSubmit = () => {
     const value = this._form.getValue(); // use that ref to get the form value
     console.log('value: ', value);
     if (value) {
-        this.props.navigation.navigate('Main')
+      fetch('http://localhost:3001/signIn', {  
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userPassword: value.password,
+          userEmail: value.email,
+        })
+      }).then((response) => response.json())
+        .then((responseJson) => {
+         if (responseJson.token !== undefined) {
+           this.props.navigation.navigate('Main') 
+         } else {
+          this.setState({signinerror: responseJson.error})
+           this.props.navigation.navigate('SignIn')
+         }
+        }).catch((error) => {
+          console.log(error.message)
+        })
   }
 }
   signUp = () => {
@@ -45,6 +66,7 @@ export default class SignIn extends React.Component {
           type={User} 
           options={options}
         />
+            {this.state.signinerror === 'Invalid Credentials' && <Text> 'Invalid Credentials'</Text>}
         <Button
           title="Sign In!"
           onPress={this.handleSubmit}

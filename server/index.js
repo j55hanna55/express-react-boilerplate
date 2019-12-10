@@ -37,15 +37,16 @@ app.post('/signIn', async (req, res) => {
   db.userInfo.findOne({
     userEmail: req.body.userEmail
   },async (error, result) => {
+    console.log(result)
     if (await bcrypt.compare(req.body.userPassword, result.userPassword)) {
       // password match then generate a token for user login
       const token = jwtGen(result._id);
       db.userInfo.update(
         {_id: result._id},
         {$set: { "token": token}});
-        res.status(200).send(token)
+        res.status(200).send({token})
     } else {
-      res.status(404).send({'error': 'Error loging in'})
+      res.status(404).send({'error': 'Invalid Credentials'})
     }
   })
 })
