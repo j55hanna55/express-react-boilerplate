@@ -16,6 +16,11 @@ app.get("/api/all", (req, res) => {
   res.json(data)
 })
 
+app.get("/", (req, res) => {
+  console.log(req.headers['user-agent'])
+  res.send('Welcome to Jakoo-API')
+})
+
 if (process.env.NODE_ENV === 'production') {
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client-rn/build/index.html'))
