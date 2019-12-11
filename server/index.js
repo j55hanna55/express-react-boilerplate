@@ -32,13 +32,21 @@ db.on("error", function (error) {
   console.log("Database Error:", error);
 });
 
-app.post('/signIn', function (req, res) {
+app.post('/signIn', async (req, res) => {
   console.log(req.body)
   db.userInfo.findOne({
-    userEmail: req.body.userEmail,
-    userPassword: req.body.userPassword
-  }, function (error, result) {
-    res.json(result)
+    userEmail: req.body.userEmail
+  },async (error, result) => {
+    if (await bcrypt.compare(req.body.userPassword, result.userPassword)) {
+      // password match then generate a token for user login
+      const token = jwtGen(result._id);
+      db.userInfo.update(
+        {_id: result._id},
+        {$set: { "token": token}});
+        res.status(200).send({token})
+    } else {
+      res.status(404).send({'error': 'Invalid Credentials'})
+    }
   })
 })
 
