@@ -36,7 +36,7 @@ export default class SignUp extends React.Component {
     const value = this._form.getValue(); // use that ref to get the form value
     console.log('value: ', value);
     // ; 
-    fetch('http://localhost:3001/signUp', {  
+    fetch('https://jakoobackend.herokuapp.com/signUp', {  
   method: 'POST',
   headers: {
     'Accept': 'application/json',

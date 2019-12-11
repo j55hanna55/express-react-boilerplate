@@ -31,7 +31,7 @@ export default class SignIn extends React.Component {
     const value = this._form.getValue(); // use that ref to get the form value
     console.log('value: ', value);
     if (value) {
-      fetch('http://localhost:3001/signIn', {  
+      fetch('https://jakoobackend.herokuapp.com/signIn', {  
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -66,7 +66,7 @@ export default class SignIn extends React.Component {
           type={User} 
           options={options}
         />
-            {this.state.signinerror === 'Invalid Credentials' && <Text> 'Invalid Credentials'</Text>}
+            {this.state.signinerror === 'User not found' && <Text> 'Invalid Credentials'</Text>}
         <Button
           title="Sign In!"
           onPress={this.handleSubmit}
