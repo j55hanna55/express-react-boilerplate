@@ -4,7 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "install": "cd client && npm install",
     "start": "node server"
   },
   "dependencies": {
